@@ -28,3 +28,20 @@ func ContainsAny[T comparable](slice1 []T, slice2 ...T) bool {
 func AnyInCommon(group1, group2 []string) bool {
 	return ContainsAny(group1, group2...)
 }
+
+func SwapValues[T comparable](values []T, index int) []T {
+	/*
+		arr := []int{0, 1, 2, 3, 4}
+		s1 := arr[:]   // [0 1 2 3 4]
+		s2 := arr[1:]  // [1 2 3 4]
+		s3 := arr[:3]  // [0 1 2]
+	*/
+
+	start := values[:index-1]
+	swapA := values[index-1]
+	swapB := values[index]
+	end := values[index+1:]
+	newSlice := append(append(append(start, swapB), swapA), end...)
+
+	return newSlice
+}
