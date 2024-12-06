@@ -1,6 +1,7 @@
 package grid
 
 import (
+	"errors"
 	"strings"
 )
 
@@ -57,4 +58,16 @@ func (grid Grid) IsWithinBounds(location Vector) bool {
 		location.X >= 0 &&
 		location.Y < grid.Height &&
 		location.X < grid.Width
+}
+
+func (grid Grid) GetAddressFromValue(val string) (Vector, error) {
+	for y := 0; y < grid.Height; y++ {
+		for x := 0; x < grid.Width; x++ {
+			address := Vector{y, x}
+			if grid.Get(address) == val {
+				return address, nil
+			}
+		}
+	}
+	return Vector{-1, -1}, errors.New("not found")
 }
