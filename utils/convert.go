@@ -14,3 +14,11 @@ func StringToInt(s string) int {
 
 	return int(i)
 }
+
+func BinaryToDecimal(binaryStr string) int {
+	decimal, err := strconv.ParseInt(binaryStr, 2, 64)
+	if err != nil {
+		return 0
+	}
+	return int(decimal)
+}
