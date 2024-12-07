@@ -15,10 +15,14 @@ func StringToInt(s string) int {
 	return int(i)
 }
 
-func BinaryToDecimal(binaryStr string) int {
-	decimal, err := strconv.ParseInt(binaryStr, 2, 64)
+func BaseNToDecimal(binaryStr string, base int) int {
+	decimal, err := strconv.ParseInt(binaryStr, base, 64)
 	if err != nil {
 		return 0
 	}
 	return int(decimal)
+}
+
+func BinaryToDecimal(binaryStr string) int {
+	return BaseNToDecimal(binaryStr, 2)
 }
