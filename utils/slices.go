@@ -65,3 +65,22 @@ func DeduplicateSlice[T comparable](slice []T) []T {
 
 	return MapKeysToSlice(set)
 }
+
+func ReverseSlice[T any](slice []T) []T {
+	reversed := make([]T, len(slice))
+	for i, v := range slice {
+		reversed[(len(slice)-1)-i] = v
+	}
+	return reversed
+}
+
+func FilterElement[T comparable](slice []T, el T) []T {
+	newSlice := []T{}
+	for _, sliceEl := range slice {
+		if el == sliceEl {
+			continue
+		}
+		newSlice = append(newSlice, sliceEl)
+	}
+	return newSlice
+}
