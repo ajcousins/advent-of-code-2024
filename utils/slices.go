@@ -45,3 +45,23 @@ func SwapValues[T comparable](values []T, index int) []T {
 
 	return newSlice
 }
+
+func MapKeysToSlice[K comparable, V any](m map[K]V) []K {
+	keys := make([]K, len(m))
+	i := 0
+	for k := range m {
+		keys[i] = k
+		i++
+	}
+
+	return keys
+}
+
+func DeduplicateSlice[T comparable](slice []T) []T {
+	set := map[T]bool{}
+	for _, el := range slice {
+		set[el] = true
+	}
+
+	return MapKeysToSlice(set)
+}

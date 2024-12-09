@@ -53,6 +53,10 @@ func AddVectors(vector1, vector2 Vector) Vector {
 	return Vector{Y: vector1.Y + vector2.Y, X: vector1.X + vector2.X}
 }
 
+func SubtractVectors(vector1, vector2 Vector) Vector {
+	return Vector{Y: vector1.Y - vector2.Y, X: vector1.X - vector2.X}
+}
+
 func (grid Grid) IsWithinBounds(location Vector) bool {
 	return location.Y >= 0 &&
 		location.X >= 0 &&
