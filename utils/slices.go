@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"golang.org/x/exp/slices"
+	"slices"
 )
 
 func MapSlice[S, T any](input []S, mapper func(S) T) []T {
@@ -42,6 +42,33 @@ func SwapValues[T comparable](values []T, index int) []T {
 	swapB := values[index]
 	end := values[index+1:]
 	newSlice := append(append(append(start, swapB), swapA), end...)
+
+	return newSlice
+}
+
+func SwapChunk[T comparable](refIndex, destIndex, chunkLength int, slice []T) []T {
+	/*
+		slice: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		refIndex: 2
+		destIndex: 6
+		chunkLength: 3
+					   b  b  b
+		result: [0, 1, 6, 7, 8, 5, 2, 3, 4, 9]
+								   a  a  a
+	*/
+
+	if destIndex < refIndex {
+		placeholder := destIndex
+		destIndex = refIndex
+		refIndex = placeholder
+	}
+
+	start := slice[:refIndex]
+	swapA := slice[refIndex : refIndex+chunkLength]
+	middle := slice[refIndex+chunkLength : destIndex]
+	swapB := slice[destIndex : destIndex+chunkLength]
+	end := slice[destIndex+chunkLength:]
+	newSlice := slices.Concat(start, swapB, middle, swapA, end)
 
 	return newSlice
 }
