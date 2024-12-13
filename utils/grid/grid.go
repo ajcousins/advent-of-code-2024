@@ -75,3 +75,12 @@ func (grid Grid) GetAddressFromValue(val string) (Vector, error) {
 	}
 	return Vector{-1, -1}, errors.New("not found")
 }
+
+func GetDirs() []Vector {
+	return []Vector{
+		{Y: -1, X: 0}, // north
+		{Y: 0, X: 1},  // east
+		{Y: 1, X: 0},  // south
+		{Y: 0, X: -1}, // west
+	}
+}
