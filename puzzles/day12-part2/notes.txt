@@ -1,0 +1,87 @@
+Contiguous Area:
+......CC..
+......CCC.
+.....CC...
+...CCC....
+....C.....
+....CC....
+.....C....
+..........
+..........
+..........
+
+Check the half spaces around every single cell.
+. . . . . . . . . .
+           x x x
+. . . . . . C C . .
+           x x x x
+. . . . . . C C C .
+         x x x x x
+. . . . . C C . . .
+     x x x x x
+. . . C C C . . . .
+     x x x x
+. . . . C . . . . .
+       x x x
+. . . . C C . . . .
+       x x x
+. . . . . C . . . .
+         x x
+. . . . . . . . . .
+
+. . . . . . . . . .
+
+. . . . . . . . . .
+
+
+For each half space, count the number of corners.
+One corner:
+..
+.X
+
+X.
+..
+
+.X
+..
+
+..
+X.
+
+XX
+.X
+
+.X
+XX
+
+X.
+XX
+
+XX
+X.
+
+Two corners:
+.X
+X.
+
+
+No corners:
+XX
+..
+
+X.
+X.
+
+..
+XX
+
+.X
+.X
+
+..
+..
+
+XX
+XX
+
+

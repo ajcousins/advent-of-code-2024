@@ -84,3 +84,12 @@ func GetDirs() []Vector {
 		{Y: 0, X: -1}, // west
 	}
 }
+
+func Includes(target Vector, cells []Vector) bool {
+	for _, cell := range cells {
+		if target == cell {
+			return true
+		}
+	}
+	return false
+}
