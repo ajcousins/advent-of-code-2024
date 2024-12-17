@@ -11,7 +11,7 @@ type Vector struct {
 }
 
 type Grid struct {
-	src    string
+	Src    string
 	Cells  map[Vector]string
 	Width  int
 	Height int
@@ -34,7 +34,7 @@ func New(src string) Grid {
 	}
 
 	return Grid{
-		src:    src,
+		Src:    src,
 		Cells:  allCells,
 		Width:  width,
 		Height: height,
