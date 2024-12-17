@@ -12,7 +12,7 @@ type Vector struct {
 
 type Grid struct {
 	src    string
-	cells  map[Vector]string
+	Cells  map[Vector]string
 	Width  int
 	Height int
 }
@@ -35,14 +35,14 @@ func New(src string) Grid {
 
 	return Grid{
 		src:    src,
-		cells:  allCells,
+		Cells:  allCells,
 		Width:  width,
 		Height: height,
 	}
 }
 
 func (grid Grid) Get(vector Vector) string {
-	return grid.cells[vector]
+	return grid.Cells[vector]
 }
 
 func MultiplyVector(vector Vector, multiplier int) Vector {
@@ -85,6 +85,15 @@ func GetDirs() []Vector {
 	}
 }
 
+func MoveMap() map[string]Vector {
+	return map[string]Vector{
+		"^": {Y: -1, X: 0},
+		"<": {Y: 0, X: -1},
+		">": {Y: 0, X: 1},
+		"v": {Y: 1, X: 0},
+	}
+}
+
 func Includes(target Vector, cells []Vector) bool {
 	for _, cell := range cells {
 		if target == cell {
@@ -92,4 +101,26 @@ func Includes(target Vector, cells []Vector) bool {
 		}
 	}
 	return false
+}
+
+func (g Grid) Swap(aAddress, bAddress Vector) Grid {
+	valA := g.Get(aAddress)
+	valB := g.Get(bAddress)
+	g.Cells[aAddress] = valB
+	g.Cells[bAddress] = valA
+	return g
+}
+
+func (g Grid) Print() {
+	rows := []string{}
+	for y := 0; y < g.Height; y++ {
+		row := []string{}
+		for x := 0; x < g.Width; x++ {
+			val := g.Get(Vector{y, x})
+			row = append(row, val)
+		}
+		rows = append(rows, strings.Join(row, ""))
+	}
+	output := strings.Join(rows, "\n")
+	println(output)
 }
