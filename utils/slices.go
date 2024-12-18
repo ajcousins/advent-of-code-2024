@@ -111,3 +111,12 @@ func FilterElement[T comparable](slice []T, el T) []T {
 	}
 	return newSlice
 }
+
+func Includes[T comparable](slice []T, el T) bool {
+	for _, s := range slice {
+		if s == el {
+			return true
+		}
+	}
+	return false
+}
